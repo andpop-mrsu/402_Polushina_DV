@@ -19,7 +19,7 @@ function key()
     } elseif ($key == "--help") {
         help();
     } else {
-        echo "Не верный ключ.\n";
+        echo "Неверный ключ.\n";
         key();
     }
 }
