@@ -20,6 +20,15 @@ function showGame($faultCount, $progress)
 
     echo "\n";
 }
+function showList()
+{
+    echo "Список игр из БД SQLite3\n";
+}
+
+function showReplay()
+{
+    echo "Повтор игры\n";
+}
 
 function help()
 {
