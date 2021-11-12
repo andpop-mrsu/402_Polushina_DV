@@ -20,11 +20,9 @@
             <div class="body">
               <canvas id="canvas" class="canvas" width=500 height=500 hidden=true></canvas>
                 <div id="greeting" class="greeting">
-                    <form action="">
-                        <label for="name">Ваше имя:</label>
-                        <input type="text" id="name" name="name">
-                        <input type="button" id="nextInfo" value="Далее">
-                    </form>
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" onkeydown = "if (event.keyCode == 13) document.getElementById('nextInfo').click()">
+                    <input type="button" id="nextInfo" value="Далее">
                 </div>
 
                 <div class="information" id="information">
@@ -33,11 +31,9 @@
                 </div>
 
                 <div class="show-game" id="show-game">
-                    <form action="">
-                        <label for="getLetter">Ваша буква:</label>
-                        <input type="text" id="getLetter" name="getLetter">
-                        <input type="button" id="checkLetter" value="Отправить">
-                    </form>
+                    <label for="getLetter">Ваша буква:</label>
+                    <input type="text" id="getLetter" name="getLetter" onkeydown = "if (event.keyCode == 13) document.getElementById('checkLetter').click()">
+                    <input type="button" id="checkLetter" value="Отправить">
                 </div>
 
                 <div class="message" id="message"></div>
