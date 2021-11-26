@@ -1,0 +1,65 @@
+<html lang="ru">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=El+Messiri&family=MedievalSharp&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://unpkg.com/idb@5/build/iife/index-min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Виселица</title>
+</head>
+<body>
+<div class="wrapper">
+    <div class="container">
+        <div class="content">
+            <div class="head">
+                <div class="title">Виселица</div>
+            </div>
+            <div class="body">
+              <canvas id="canvas" class="canvas" width=500 height=500 hidden=true></canvas>
+                <div id="greeting" class="greeting">
+                    <label for="name">Ваше имя:</label>
+                    <input type="text" id="name" name="name" onkeydown = "if (event.keyCode == 13) document.getElementById('nextInfo').click()">
+                    <input type="button" id="nextInfo" value="Далее">
+                </div>
+
+                <div class="information" id="information">
+                    <p id="info" class="info"></p>
+                    <button id="nextShowGame">Далее</button>
+                </div>
+
+                <div class="show-game" id="show-game">
+                    <label for="getLetter">Ваша буква:</label>
+                    <input type="text" id="getLetter" name="getLetter" onkeydown = "if (event.keyCode == 13) document.getElementById('checkLetter').click()">
+                    <input type="button" id="checkLetter" value="Отправить">
+                </div>
+
+                <div class="message" id="message"></div>
+
+                <div class="result" id="result">
+                    <p id="resultText"></p>
+
+                    <button id="replayGame">Начать сначала</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="gamelist" id="gamelist" hidden=true>
+        <input type="button" id="replayId" value="Повтор игры">
+        <input type="button" id="listGames" value="Спиоск игр">
+         <div id="textGameList"></div>
+         <div>
+            <table border="1" id="table" align="center">
+                
+            </table>
+         </div>
+    </div>
+</div>
+
+
+<script src="src/Controller.js" type="module"></script>
+</body>
+</html> 
