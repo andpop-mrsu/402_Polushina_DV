@@ -1,3 +1,4 @@
+#!/usr/bin/env php
 <?php
 $autoloadPathForGithub = __DIR__ . '/../vendor/autoload.php';
 $autoloadPathForPackagist = __DIR__ . '/../../../autoload.php';
