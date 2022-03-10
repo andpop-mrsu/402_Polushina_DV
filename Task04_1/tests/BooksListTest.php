@@ -51,11 +51,11 @@ class BooksListTest extends TestCase
         $book3 = new Book();
         $booksList = new BooksList();
         $book1 -> setName("Сollection of tales")->setAuthors(array("A. Pushkin", "L. Tolstoy"))
-            ->setPublisher("AST")->setYear(2005);
-        $book2 -> setName("Collection")->setAuthors(array("A.B. Games"))
-            ->setPublisher("Weird Tales")->setYear(1926);
-        $book3 -> setName("Princes")
-            ->setAuthors(array("A.Make", "G.Moner", "L.Niolit"))
+            ->setPublisher("AST")->setYear(2022);
+        $book2 -> setName("A large library of the best books in the world about happiness")->setAuthors(array("Heidt Jonathan", "Jasanov Alan", "Esfahani Emily Smith"))
+            ->setPublisher("AST")->setYear(2022);
+        $book3 -> setName("The twelve Chairs")
+            ->setAuthors(array("Evgeny Petrov", "Ilya Ilf"))
             ->setPublisher("University")->setYear(2008);
         $booksList -> add($book1);
         $booksList -> add($book2);
@@ -63,55 +63,62 @@ class BooksListTest extends TestCase
 
         $this->assertSame(
             "Id: 8" . "\n" .
-            "Название: Magic tales. The Tale of Tsar Saltan; Tale of the fisherman; Tale of the Dead Tsar" . "\n" .
+            "Название: Сollection of tales" . "\n" .
             "Автор 1: A. Pushkin" . "\n" .
+			"Автор 2: L. Tolstoy" . "\n" .
             "Издательство: AST" . "\n" .
             "Год: 2022",
             $booksList -> current() -> __toString()
         );
-        $this -> assertSame(4, $booksList -> key());
+        $this -> assertSame(8, $booksList -> key());
+		$booksList -> store("output");
         return $booksList;
     }
 
-    public function testNext(BooksList $booksList)
+    public function testNext()
     {
-        $booksList->next();
+		$booksList = new BooksList();
+        $booksList->load("output");
+		$booksList->next();
         $this->assertSame(
-            "Id: 4" . "\n" .
-            "Название: The Cherry Orchard" . "\n" .
-            "Автор 1: A. Chekhov" . "\n" .
+            "Id: 9" . "\n" .
+            "Название: A large library of the best books in the world about happiness" . "\n" .
+            "Автор 1: Heidt Jonathan" . "\n" .
+			"Автор 2: Jasanov Alan" . "\n" .
+			"Автор 3: Esfahani Emily Smith" . "\n" .
             "Издательство: AST" . "\n" .
             "Год: 2022",
             $booksList -> current() -> __toString()
         );
         $booksList->next();
         $this->assertSame(
-            "Id: 5" . "\n" .
-            "Название: Day Watch" . "\n" .
-            "Автор 1: V. Vasilyev" . "\n" .
-            "Автор 2: S. Lukyanenko" . "\n" .
-            "Издательство: AST" . "\n" .
-            "Год: 2022",
+            "Id: 10" . "\n" .
+            "Название: The twelve Chairs" . "\n" .
+            "Автор 1: Evgeny Petrov" . "\n" .
+            "Автор 2: Ilya Ilf" . "\n" .
+            "Издательство: University" . "\n" .
+            "Год: 2008",
             $booksList -> current() -> __toString()
         );
 
         return $booksList;
     }
 
-    public function testValidAndRewind(BooksList $booksList)
+    public function testValidAndRewind()
     {
+		$booksList = new BooksList();
+        $booksList->load("output");
         $booksList -> next();
-        $this -> assertSame(false, $booksList -> valid());
+        $this -> assertSame(true, $booksList -> valid());
         $booksList -> rewind();
         $this -> assertSame(true, $booksList -> valid());
         $this -> assertSame(
-            "Id: 3" . "\n" .
-            "Название: The biggest book of fairy tales" . "\n" .
-            "Автор 1: A. Barto" . "\n" .
-            "Автор 2: A. Usachev" . "\n" .
-			"Автор 3: A. Pushkin" . "\n" .
-            "Издательство: ROSMEN" . "\n" .
-            "Год: 2020",
+            "Id: 8" . "\n" .
+            "Название: Сollection of tales" . "\n" .
+            "Автор 1: A. Pushkin" . "\n" .
+			"Автор 2: L. Tolstoy" . "\n" .
+            "Издательство: AST" . "\n" .
+            "Год: 2022",
             $booksList->current()->__toString()
         );
     }
