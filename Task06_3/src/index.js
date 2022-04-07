@@ -1,39 +1,54 @@
-export default class Vector {
-  constructor(x, y, z) {
-    this.x = x
-    this.y = y
-    this.z = z
+export default class Fraction {
+  constructor(numerator, denominator) {
+    this.numerator = numerator
+    this.denominator = denominator
+    this.reduceFraction(numerator, denominator)
   }
 
-  get length() {
-    return Math.sqrt(this.x ** 2 + this.y ** 2 + this.z ** 2)
+  reduceFraction(numerator, denominator) {
+    const greatestCommonDivisor = this.gcd(Math.abs(numerator), denominator)
+    if (greatestCommonDivisor == 1) {
+      this.numerator = numerator
+      this.denominator = denominator
+    } else {
+      this.numerator = numerator / greatestCommonDivisor
+      this.denominator = denominator / greatestCommonDivisor
+    }
+  }
+  
+  gcd(a, b) {
+    return b ? this.gcd (b, a % b) : a
+  }    
+
+  get numer() {
+    return this.numerator
   }
 
-  add(vector) {
-    return new Vector(this.x + vector.x, this.y + vector.y, this.z + vector.z)
+  get denom() {
+    return this.denominator
   }
 
-  sub(vector) {
-    return new Vector(this.x - vector.x, this.y - vector.y, this.z - vector.z)
+  add(frac) {
+    return new Fraction(
+      this.denominator * frac.numerator + this.numerator * frac.denominator,
+      this.denominator * frac.denominator
+    )
   }
 
-  product(number) {
-    return new Vector(this.x * number, this.y * number, this.z * number)
-  }
-
-  scalarProduct(vector) {
-    return this.x * vector.x + this.y * vector.y + this.z * vector.z
-  }
-
-  vectorProduct(vector) {
-    return new Vector(
-      this.y * vector.z - this.z * vector.y,
-      -(this.x * vector.z - this.z * vector.x),
-      this.x * vector.y - this.y * vector.x
+  sub(frac) {
+    return new Fraction(
+      this.numerator * frac.denominator - this.denominator * frac.numerator,
+      this.denominator * frac.denominator
     )
   }
 
   toString() {
-    return `(${this.x};${this.y};${this.z})`
+    if (Math.abs(this.numerator) > this.denominator) {
+      const numerator = this.numerator % this.denominator
+      const integerPart = Math.sign(this.numerator) * Math.abs((this.numerator - numerator) / this.denominator)
+      return `${integerPart}'${numerator}/${this.denominator}`
+    }
+  
+    return `${this.numerator}/${this.denominator}`
   }
 }
