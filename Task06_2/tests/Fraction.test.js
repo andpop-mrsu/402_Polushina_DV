@@ -1,7 +1,7 @@
 import Fraction from '../src/index'
 
 test('toString', () => {
-  expect(new Fraction(5, 2).toString()).toBe('2\'1/2')
+  expect(new Fraction(7, 2).toString()).toBe('3\'1/2')
 })
 
 test('getNumer', () => {
@@ -14,12 +14,12 @@ test('getDenom', () => {
 
 test('add', () => {
   const frac1 = new Fraction(-1, 2)
-  const frac2 = new Fraction(1, 8)
-  expect(frac1.add(frac2).toString()).toBe('-3/8')
+  const frac2 = new Fraction(5, 8)
+  expect(frac1.add(frac2).toString()).toBe('1/8')
 })
 
 test('sub', () => {
   const frac1 = new Fraction(4, 5)
-  const frac2 = new Fraction(3, 5)
-  expect(frac1.sub(frac2).toString()).toBe('1/5')
+  const frac2 = new Fraction(2, 5)
+  expect(frac1.sub(frac2).toString()).toBe('2/5')
 })
